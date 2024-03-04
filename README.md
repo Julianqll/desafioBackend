@@ -70,3 +70,6 @@ Para ingresar a la plataforma existen 3 usuarios, especificados en `prelude.py`
 3. Aprobador
    - Username: **aprobador1**
    - Password: **password3**
+
+## Documentación API
+Para consultar la documentación del API Rest: [Portal API Docs](http://127.0.0.1:8000/portal/api/schema/docs/ ) <br>
