@@ -12,5 +12,6 @@ router.register(r'itemcompras', views.ItemCompraViewSet, 'itemcompras')
 urlpatterns =[
     path("api/v1/", include(router.urls)),
     path('login/', views.LoginViewSet.as_view(), name='login'),
+    path('logout/', views.LogoutView.as_view(), name='logout'),
 
 ]

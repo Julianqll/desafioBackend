@@ -1,11 +1,13 @@
 from rest_framework import serializers
 from .models import Proveedor, Producto, SolicitudCompra, ItemCompra
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 class UserSerializer(serializers.ModelSerializer):
+    groups = serializers.PrimaryKeyRelatedField(queryset=Group.objects.all(), many=True)
+
     class Meta(object):
         model = User
-        fields = ['id', 'username', 'email', 'password']
+        fields = ['id', 'username', 'email', 'password', 'groups']
 
 
 class ProveedorSerializer(serializers.ModelSerializer):

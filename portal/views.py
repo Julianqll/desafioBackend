@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from rest_framework import viewsets, status
 from portal.models import ItemCompra, Producto, Proveedor, SolicitudCompra
+from portal.permission import IsAdminUser, IsAprobadorUser, IsColocadorUser
 from portal.serializer import ItemCompraSerializer, ProductoSerializer, ProveedorSerializer, SolicitudCompraSerializer, UserSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -24,10 +25,29 @@ class LoginViewSet(APIView):
         serializer = UserSerializer(instance=user)
 
         return Response({"token": token.key, "user": serializer.data})
+class LogoutView(APIView):
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    def post(self, request):
+        # Eliminar el token de sesión (o realizar cualquier limpieza adicional)
+        request.user.auth_token.delete()
+
+        return Response({"message": "Logged out successfully"}, status=200)
 
 class ProveedorViewSet(viewsets.ModelViewSet):
     authentication_classes = [SessionAuthentication, TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    def get_permissions(self):
+        permission_classes = [IsAuthenticated]        
+        if self.action == 'create':
+            permission_classes = [IsAdminUser]
+        elif self.action == 'list':
+            permission_classes = [IsAdminUser]
+        elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
+            permission_classes = [IsAdminUser]
+        elif self.action == 'destroy':
+            permission_classes = [IsAdminUser]
+        return [permission() for permission in permission_classes]
+    
 
     serializer_class = ProveedorSerializer
     queryset = Proveedor.objects.all()
@@ -35,7 +55,20 @@ class ProveedorViewSet(viewsets.ModelViewSet):
 class ProductoViewSet(viewsets.ModelViewSet):
     serializer_class = ProductoSerializer
     queryset = Producto.objects.all()
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
 
+    def get_permissions(self):
+        permission_classes = [IsAuthenticated]        
+        if self.action == 'create':
+            permission_classes = [IsAdminUser]
+        elif self.action == 'list':
+            permission_classes = [IsAdminUser]
+        elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
+            permission_classes = [IsAdminUser]
+        elif self.action == 'destroy':
+            permission_classes = [IsAdminUser]
+        return [permission() for permission in permission_classes]
+    
     def create(self, request, *args, **kwargs):
         # Verificar si la solicitud contiene una lista de productos
         if isinstance(request.data, list):
@@ -50,10 +83,34 @@ class ProductoViewSet(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 class SolicitudCompraViewSet(viewsets.ModelViewSet):
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
+    def get_permissions(self):
+        permission_classes = [IsAuthenticated]        
+        if self.action == 'create':
+            permission_classes = [IsAdminUser|IsColocadorUser]
+        elif self.action == 'list':
+            permission_classes = [IsAdminUser|IsColocadorUser | IsAprobadorUser]
+        elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
+            permission_classes = [IsAdminUser|IsColocadorUser | IsAprobadorUser]
+        elif self.action == 'destroy':
+            permission_classes = [IsAdminUser]
+        return [permission() for permission in permission_classes]
     queryset = SolicitudCompra.objects.prefetch_related('items') 
     serializer_class = SolicitudCompraSerializer
 
 class ItemCompraViewSet(viewsets.ModelViewSet):
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
+    def get_permissions(self):
+        permission_classes = [IsAuthenticated]        
+        if self.action == 'create':
+            permission_classes = [IsAdminUser]
+        elif self.action == 'list':
+            permission_classes = [IsAdminUser]
+        elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
+            permission_classes = [IsAdminUser]
+        elif self.action == 'destroy':
+            permission_classes = [IsAdminUser]
+        return [permission() for permission in permission_classes]
     serializer_class = ItemCompraSerializer
     queryset = ItemCompra.objects.all()
 
