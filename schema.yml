@@ -1,0 +1,793 @@
+openapi: 3.0.3
+info:
+  title: Portal API
+  version: 0.0.0
+paths:
+  /portal/api/v1/itemcompras/:
+    get:
+      operationId: api_v1_itemcompras_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemCompra'
+          description: ''
+    post:
+      operationId: api_v1_itemcompras_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemCompra'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ItemCompra'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ItemCompra'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemCompra'
+          description: ''
+  /portal/api/v1/itemcompras/{id}/:
+    get:
+      operationId: api_v1_itemcompras_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this item compra.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemCompra'
+          description: ''
+    put:
+      operationId: api_v1_itemcompras_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this item compra.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemCompra'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ItemCompra'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ItemCompra'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemCompra'
+          description: ''
+    patch:
+      operationId: api_v1_itemcompras_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this item compra.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedItemCompra'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedItemCompra'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedItemCompra'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemCompra'
+          description: ''
+    delete:
+      operationId: api_v1_itemcompras_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this item compra.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /portal/api/v1/productos/:
+    get:
+      operationId: api_v1_productos_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Producto'
+          description: ''
+    post:
+      operationId: api_v1_productos_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Producto'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Producto'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Producto'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Producto'
+          description: ''
+  /portal/api/v1/productos/{id}/:
+    get:
+      operationId: api_v1_productos_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this producto.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Producto'
+          description: ''
+    put:
+      operationId: api_v1_productos_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this producto.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Producto'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Producto'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Producto'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Producto'
+          description: ''
+    patch:
+      operationId: api_v1_productos_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this producto.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProducto'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProducto'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProducto'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Producto'
+          description: ''
+    delete:
+      operationId: api_v1_productos_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this producto.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /portal/api/v1/proveedores/:
+    get:
+      operationId: api_v1_proveedores_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Proveedor'
+          description: ''
+    post:
+      operationId: api_v1_proveedores_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Proveedor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Proveedor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Proveedor'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Proveedor'
+          description: ''
+  /portal/api/v1/proveedores/{id}/:
+    get:
+      operationId: api_v1_proveedores_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this proveedor.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Proveedor'
+          description: ''
+    put:
+      operationId: api_v1_proveedores_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this proveedor.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Proveedor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Proveedor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Proveedor'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Proveedor'
+          description: ''
+    patch:
+      operationId: api_v1_proveedores_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this proveedor.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProveedor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProveedor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProveedor'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Proveedor'
+          description: ''
+    delete:
+      operationId: api_v1_proveedores_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this proveedor.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /portal/api/v1/solicitudescompra/:
+    get:
+      operationId: api_v1_solicitudescompra_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SolicitudCompra'
+          description: ''
+    post:
+      operationId: api_v1_solicitudescompra_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SolicitudCompra'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SolicitudCompra'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SolicitudCompra'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolicitudCompra'
+          description: ''
+  /portal/api/v1/solicitudescompra/{id}/:
+    get:
+      operationId: api_v1_solicitudescompra_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this solicitud compra.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolicitudCompra'
+          description: ''
+    put:
+      operationId: api_v1_solicitudescompra_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this solicitud compra.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SolicitudCompra'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SolicitudCompra'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SolicitudCompra'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolicitudCompra'
+          description: ''
+    patch:
+      operationId: api_v1_solicitudescompra_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this solicitud compra.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSolicitudCompra'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSolicitudCompra'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSolicitudCompra'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SolicitudCompra'
+          description: ''
+    delete:
+      operationId: api_v1_solicitudescompra_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this solicitud compra.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /portal/login/:
+    post:
+      operationId: login_create
+      tags:
+      - login
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /portal/logout/:
+    post:
+      operationId: logout_create
+      tags:
+      - logout
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+components:
+  schemas:
+    ItemCompra:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        producto:
+          allOf:
+          - $ref: '#/components/schemas/Producto'
+          writeOnly: true
+        cantidad:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 1
+          format: int64
+        precio_unitario:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        solicitud:
+          type: integer
+      required:
+      - id
+      - precio_unitario
+      - producto
+      - solicitud
+    PatchedItemCompra:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        producto:
+          allOf:
+          - $ref: '#/components/schemas/Producto'
+          writeOnly: true
+        cantidad:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 1
+          format: int64
+        precio_unitario:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        solicitud:
+          type: integer
+    PatchedProducto:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nombre:
+          type: string
+          maxLength: 100
+        enlace:
+          type: string
+          format: uri
+          maxLength: 200
+    PatchedProveedor:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nombre:
+          type: string
+          maxLength: 100
+        direccion:
+          type: string
+          maxLength: 200
+        contacto:
+          type: string
+          maxLength: 100
+    PatchedSolicitudCompra:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        proveedor_id:
+          type: integer
+          writeOnly: true
+        proveedor:
+          allOf:
+          - $ref: '#/components/schemas/Proveedor'
+          readOnly: true
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemCompra'
+        precio_total:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        aprobada:
+          type: boolean
+    Producto:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nombre:
+          type: string
+          maxLength: 100
+        enlace:
+          type: string
+          format: uri
+          maxLength: 200
+      required:
+      - enlace
+      - id
+      - nombre
+    Proveedor:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nombre:
+          type: string
+          maxLength: 100
+        direccion:
+          type: string
+          maxLength: 200
+        contacto:
+          type: string
+          maxLength: 100
+      required:
+      - contacto
+      - direccion
+      - id
+      - nombre
+    SolicitudCompra:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        proveedor_id:
+          type: integer
+          writeOnly: true
+        proveedor:
+          allOf:
+          - $ref: '#/components/schemas/Proveedor'
+          readOnly: true
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemCompra'
+        precio_total:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        aprobada:
+          type: boolean
+      required:
+      - id
+      - proveedor
+      - proveedor_id
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"
