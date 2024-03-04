@@ -32,8 +32,8 @@ class ItemCompraSerializer(serializers.ModelSerializer):
 class SolicitudCompraSerializer(serializers.ModelSerializer):
     proveedor_id = serializers.PrimaryKeyRelatedField(queryset=Proveedor.objects.all(), source='proveedor', write_only=True)
     proveedor = ProveedorSerializer(read_only=True)
-    items = ItemCompraSerializer(many=True)
-
+    items = ItemCompraSerializer(many=True, required=False)
     class Meta:
         model = SolicitudCompra
         fields = '__all__'
+        
