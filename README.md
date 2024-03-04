@@ -43,6 +43,7 @@ El repositorio consta de dos partes principales:
    ```bash
    python manage.py makemigrations
    python manage.py migrate
+   python group.py
     ```
 
 2. Corremo el servidor backend:
