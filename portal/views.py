@@ -39,9 +39,9 @@ class ProveedorViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         permission_classes = [IsAuthenticated]        
         if self.action == 'create':
-            permission_classes = [IsAdminUser]
+            permission_classes = [IsAdminUser |IsColocadorUser]
         elif self.action == 'list':
-            permission_classes = [IsAdminUser]
+            permission_classes = [IsAdminUser |IsColocadorUser]
         elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
             permission_classes = [IsAdminUser]
         elif self.action == 'destroy':
@@ -103,7 +103,7 @@ class ItemCompraViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         permission_classes = [IsAuthenticated]        
         if self.action == 'create':
-            permission_classes = [IsAdminUser]
+            permission_classes = [IsAdminUser|IsColocadorUser]
         elif self.action == 'list':
             permission_classes = [IsAdminUser]
         elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
