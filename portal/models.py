@@ -18,7 +18,6 @@ class Producto(models.Model):
 
 class SolicitudCompra(models.Model):
     proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE)
-    productos = models.ManyToManyField(Producto, through='ItemCompra')
     precio_total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     aprobada = models.BooleanField(default=False)
     
@@ -38,3 +37,7 @@ class ItemCompra(models.Model):
     
     def precio_total(self):
         return self.cantidad * self.precio_unitario
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.solicitud.calcular_precio_total()  # Update precio_total of SolicitudCompra after saving ItemCompra

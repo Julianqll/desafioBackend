@@ -12,36 +12,28 @@ class ProductoSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ItemCompraSerializer(serializers.ModelSerializer):
+    producto = ProductoSerializer(write_only=True)  # Establecer write_only=True
+
     class Meta:
         model = ItemCompra
         fields = '__all__'
 
+    def create(self, validated_data):
+        producto_data = validated_data.pop('producto')
+        producto, created = Producto.objects.get_or_create(**producto_data)
+        item_compra = ItemCompra.objects.create(producto=producto, **validated_data)
+        return item_compra
+    def to_representation(self, instance):
+        # Sobreescribir este método para incluir detalles del producto en la respuesta
+        representation = super().to_representation(instance)
+        representation['producto'] = ProductoSerializer(instance.producto).data
+        return representation
+
 class SolicitudCompraSerializer(serializers.ModelSerializer):
-    proveedor = ProveedorSerializer()
+    proveedor_id = serializers.PrimaryKeyRelatedField(queryset=Proveedor.objects.all(), source='proveedor', write_only=True)
+    proveedor = ProveedorSerializer(read_only=True)
     items = ItemCompraSerializer(many=True)
 
     class Meta:
         model = SolicitudCompra
         fields = '__all__'
-
-    def create(self, validated_data):
-        items_data = validated_data.pop('items')
-        solicitud = SolicitudCompra.objects.create(**validated_data)
-        for item_data in items_data:
-            ItemCompra.objects.create(solicitud=solicitud, **item_data)
-        solicitud.calcular_precio_total()
-        return solicitud
-
-    def update(self, instance, validated_data):
-        instance.proveedor = validated_data.get('proveedor', instance.proveedor)
-        instance.aprobada = validated_data.get('aprobada', instance.aprobada)
-        
-        items_data = validated_data.get('items')
-        if items_data:
-            instance.items.all().delete()
-            for item_data in items_data:
-                ItemCompra.objects.create(solicitud=instance, **item_data)
-            instance.calcular_precio_total()
-
-        instance.save()
-        return instance
