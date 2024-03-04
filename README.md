@@ -59,7 +59,7 @@ El repositorio consta de dos partes principales:
     ```
 
 ## Interacción
-Puede ingresar a: [Stracon Portal](http://localhost:5173/ )
+Puede ingresar a: [Stracon Portal](http://localhost:5173/ ) <br>
 Para ingresar a la plataforma existen 3 usuarios, especificados en `prelude.py`
 1. Admin
    - Username: **admin**
