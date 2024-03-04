@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path, include, re_path
 from rest_framework import routers
 
 from portal import views
@@ -10,5 +10,7 @@ router.register(r'solicitudescompra', views.SolicitudCompraViewSet, 'solicitudes
 router.register(r'itemcompras', views.ItemCompraViewSet, 'itemcompras')
 
 urlpatterns =[
-    path("api/v1/", include(router.urls))
+    path("api/v1/", include(router.urls)),
+    path('login/', views.LoginViewSet.as_view(), name='login'),
+
 ]
