@@ -12,9 +12,8 @@ GROUPS = ['Admin', 'Colocador', 'Aprobador']
 
 # Define los usuarios a crear con su respectivo grupo
 USERS = [
-    {'username': 'user1', 'password': 'password1', 'groups': ['Admin']},
-    {'username': 'user2', 'password': 'password2', 'groups': ['Colocador']},
-    {'username': 'user3', 'password': 'password3', 'groups': ['Aprobador']},
+    {'username': 'colocador1', 'password': 'password2', 'groups': ['Colocador']},
+    {'username': 'aprobador1', 'password': 'password3', 'groups': ['Aprobador']},
     # Agrega más usuarios si es necesario
 ]
 

@@ -43,7 +43,7 @@ El repositorio consta de dos partes principales:
    ```bash
    python manage.py makemigrations
    python manage.py migrate
-   python group.py
+   python prelude.py
     ```
 
 2. Corremo el servidor backend:
@@ -57,3 +57,16 @@ El repositorio consta de dos partes principales:
    ```bash
    npm run dev
     ```
+
+## Interacción
+Puede ingresar a: [Stracon Portal](http://localhost:5173/ )
+Para ingresar a la plataforma existen 3 usuarios, especificados en `prelude.py`
+1. Admin
+   - Username: **admin**
+   - Password: **admin123**
+2. Colocador
+   - Username: **colocador1**
+   - Password: **password2**
+3. Aprobador
+   - Username: **aprobador1**
+   - Password: **password3**
